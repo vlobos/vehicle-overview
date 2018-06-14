@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Popup from 'reactjs-popup'
-
+//
 class Overview extends React.Component {
   constructor () {
     super()
@@ -41,12 +41,12 @@ class Overview extends React.Component {
         })
       })
       .then(() => {
-        console.log(this.state.details, 'Successfully getting all data', this.state.features, 'Features')
+       console.log(this.state.details, 'Successfully getting all data', this.state.features, 'Features')
         this.addComma.call(this, this.state.details.mileage, this.state.details.price)
       })
 
       .catch(err => {
-        console.log('There was an error is your axios', err)
+       console.log('There was an error is your axios', err)
       });
 
   }
@@ -61,7 +61,6 @@ class Overview extends React.Component {
         expanded: true
       })
     }
-    console.log("hey dash")
   }
 
 
@@ -352,7 +351,7 @@ class Overview extends React.Component {
               </InnerColumn>
               <InnerColumn>
                 <div className='image'>
-                  <img src='carfaximage.gif' />
+                  <img src='http://localhost:8000/images/carfaximage.gif' />
                 </div>
                 <div className='carfax-text'>
                   <div>Carfax</div>
@@ -455,7 +454,7 @@ class Overview extends React.Component {
             </Row>
             <RowImage>
               <InnerColumn>
-                <img src='kelleybbimg.png' />
+                <img src='http://localhost:8000/images/kelleybbimg.png' />
                 <DivKelleyText>
                   Kelley Blue Book info valid for ZIP Code 90045 through 06/07/2018
                 </DivKelleyText>
@@ -517,7 +516,7 @@ class Overview extends React.Component {
           <Comment>
             {details.seller_comments}
           </Comment>
-          <SeeMoreLink onClick={this.expandComment.bind(this)}>
+          <SeeMoreLink id="seemorelink" onClick={this.expandComment.bind(this)}>
             {this.state.expanded ? (<SeeMore> Show Less </SeeMore>) : 
             (<SeeMore> Show More ˅ </SeeMore>)}
           </SeeMoreLink>
