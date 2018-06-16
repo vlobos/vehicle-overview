@@ -4,7 +4,7 @@ RUN mkdir /vehicle-overview
 
 WORKDIR /vehicle-overview
 
-COPY package*.json /vehicle-overview
+COPY package.json /vehicle-overview
 
 RUN npm install
 

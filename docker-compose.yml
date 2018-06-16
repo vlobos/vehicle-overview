@@ -1,11 +1,10 @@
 version: '3'
 services:
   web:
-    build: .
-    image: vehicle-overview
-    volumes: 
-      - vol1:/vehicle-overview
-      - vol2:/vehicle-overview/node_modules
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    image: vlobos/vehicleoverview1
     ports:
       - "8000:8000"
     depends_on:
@@ -26,6 +25,4 @@ services:
       POSTGRES_PASSWORD: suryvillalobos
 volumes:
   db:
-  vol1:
-  vol2:
   
