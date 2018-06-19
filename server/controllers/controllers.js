@@ -1,23 +1,13 @@
 const { Vehicles, Features, Vehicle_Features } = require('../../db/models');
-
+/*---Second Attempt---*/
 const vehicleController = {
   GET: (req, res) => {
     console.log('in controller get');
     console.log(req.params)
     Vehicles.findAll({ where: {
       vehicle_id: req.params.vehicleID
-    }, include: [
-      {
-        model: Vehicle_Features,
-        where: { 
-          vehicleVehicleId: req.params.vehicleID
-        }, include: [
-          {
-            model: Features
-          }
-        ]
-      }
-    ]})
+    }
+  })
       .then(data => {
         console.log('VehicleController. Successful fetching of data');
         res.status(200).send(data);
@@ -26,11 +16,54 @@ const vehicleController = {
         console.log('throw err', err);
         res.status(404);
       })
-  }
-  // POST: {
 
-  // }
+        Vehicle_Features.findAll({ where: {
+          vehicleVehicleId: req.params.vehicleID
+        }})
+          .then(data => {
+            console.log('vehiclecontroller. Got VehicleFeatures')
+            res.status(200).send(data);
+          })
+          .catch((err)=> {
+            console.log('throw err',  err);
+            res.status(404);
+          })
+
+  }
 };
+
+/*---First Attempt---*/
+// const vehicleController = {
+//   GET: (req, res) => {
+//     console.log('in controller get');
+//     console.log(req.params)
+//     Vehicles.findAll({ where: {
+//       vehicle_id: req.params.vehicleID
+//     }, include: [
+//       {
+//         model: Vehicle_Features,
+//         where: { 
+//           vehicleVehicleId: req.params.vehicleID
+//         }, include: [
+//           {
+//             model: Features
+//           }
+//         ]
+//       }
+//     ]})
+//       .then(data => {
+//         console.log('VehicleController. Successful fetching of data');
+//         res.status(200).send(data);
+//       })
+//       .catch((err) => {
+//         console.log('throw err', err);
+//         res.status(404);
+//       })
+//   }
+//   // POST: {
+
+//   // }
+// };
 
 module.exports = {
   vehicleController

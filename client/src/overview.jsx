@@ -28,13 +28,14 @@ class Overview extends React.Component {
 
   componentDidMount () {
     axios
-      .get('/api/vehicles/2')
+      .get('http://localhost:8000/api/vehicles/2') /*change to ec2 link*/
       .then(data => {
+        console.log(data)
         let feats = [];
-        let featureList = data.data[0].vehicle_features;
-        featureList.forEach((feat) => {
-          feats.push(feat.feature.feature)
-        })
+        // let featureList = data.data[0].vehicle_features;
+        // featureList.forEach((feat) => {
+        //   feats.push(feat.feature.feature)
+        // })
         this.setState({
           details: data.data[0],
           features: feats
@@ -351,7 +352,7 @@ class Overview extends React.Component {
               </InnerColumn>
               <InnerColumn>
                 <div className='image'>
-                  <img src='http://localhost:8000/images/carfaximage.gif' />
+                  <img src='http://13.56.250.228:8000/images/carfaximage.gif' />
                 </div>
                 <div className='carfax-text'>
                   <div>Carfax</div>
@@ -454,7 +455,7 @@ class Overview extends React.Component {
             </Row>
             <RowImage>
               <InnerColumn>
-                <img src='http://localhost:8000/images/kelleybbimg.png' />
+                <img src='http://13.56.250.228:8000/images/kelleybbimg.png' />
                 <DivKelleyText>
                   Kelley Blue Book info valid for ZIP Code 90045 through 06/07/2018
                 </DivKelleyText>

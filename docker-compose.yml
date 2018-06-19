@@ -1,10 +1,10 @@
-version: '3'
+version: '2'
 services:
   web:
     build:
       context: ../
       dockerfile: Dockerfile
-    image: vlobos/vehicleoverview1
+    image: vlobos/vehicleoverview
     ports:
       - "8000:8000"
     depends_on:
@@ -15,6 +15,10 @@ services:
     links:
       - db
     command: npm start
+  proxy-server:
+    image: vlobos/proxyserver1
+    ports: 
+      - "9000:9000"
   db:
     image: postgres:10.4
     volumes: 
